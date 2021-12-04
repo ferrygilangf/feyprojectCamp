@@ -204,7 +204,7 @@ class CheckoutController extends Controller
         $transaction_status = $notif->transaction_status;
         $fraud = $notif->fraud_status;
 
-        $checkout_id = explode('-', $notif->order_id)[0]
+        $checkout_id = explode('-', $notif->order_id)[0];
         $checkout = Checkout::find($checkout_id);
 
         if ($transaction_status == 'capture') {

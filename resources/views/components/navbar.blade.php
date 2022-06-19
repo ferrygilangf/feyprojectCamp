@@ -3,7 +3,8 @@
         <a class="navbar-brand" href="{{route('welcome') }}">
             <img src="{{ asset('images/logo.png') }}" alt="">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -28,16 +29,24 @@
                     @if (Auth::user()->avatar)
                     <img src="{{Auth::user() -> avatar }}" class="user-photo" alt="">
                     @else
-                    <img src="https://ui-avatars.com/api/?name=Admin" class="user-photo" alt="" style="border-radius: 50%">
+                    <img src="https://ui-avatars.com/api/?name=Admin" class="user-photo" alt=""
+                        style="border-radius: 50%">
                     @endif
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="right: 0; left: auto">
                         <li>
                             <a href="{{ route('dashboard') }}" class="dropdown-ltem">My Dashboard</a>
                         </li>
+                        @if(Auth::user()->is_admin)
                         <li>
-                            <a href="#" class="dropdown-ltem" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Sign Out</a>
+                            <a href="{{ route('admin.discount.index') }}" class="dropdown-ltem">Discount</a>
+                        </li>
+                        @endif
+                        <li>
+                            <a href="#" class="dropdown-ltem"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Sign
+                                Out</a>
                             <form id="logout-form" action="{{route('logout') }}" method="post" style="display: none">
-                            <input type="hidden" name="_token" value="{{csrf_token() }}">
+                                <input type="hidden" name="_token" value="{{csrf_token() }}">
                             </form>
                         </li>
                     </ul>
